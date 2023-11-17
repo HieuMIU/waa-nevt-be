@@ -1,5 +1,11 @@
 package nevt.dto.business;
 
+import nevt.models.business.AttributeType;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class CarDTO {
 
     private String productNumber;
@@ -18,9 +24,11 @@ public class CarDTO {
 
     private int stockQuantity;
 
+    private Collection<AttributeTypeDTO> attributeTypes = new ArrayList<>();
+
     public CarDTO(){}
 
-    public CarDTO(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity) {
+    public CarDTO(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeTypeDTO> attributeTypes) {
         this.productNumber = productNumber;
         this.name = name;
         this.basePrice = basePrice;
@@ -29,6 +37,7 @@ public class CarDTO {
         this.model = model;
         this.make = make;
         this.stockQuantity = stockQuantity;
+        this.attributeTypes = attributeTypes;
     }
 
     public String getProductNumber() {
@@ -93,5 +102,13 @@ public class CarDTO {
 
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
+    }
+
+    public Collection<AttributeTypeDTO> getAttributeTypes() {
+        return attributeTypes;
+    }
+
+    public void setAttributeTypes(Collection<AttributeTypeDTO> attributeTypes) {
+        this.attributeTypes = attributeTypes;
     }
 }

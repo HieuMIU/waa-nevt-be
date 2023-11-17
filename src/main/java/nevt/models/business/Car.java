@@ -3,6 +3,10 @@ package nevt.models.business;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 @Document
 public class Car {
 
@@ -23,11 +27,14 @@ public class Car {
 
     private int stockQuantity;
 
+    private Collection<AttributeType> attributeTypes = new ArrayList<AttributeType>();
+
     public Car() {
 
     }
 
-    public Car(String name, Double basePrice, String description, int year, String model, String make, int stockQuantity) {
+    public Car(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeType> attributeTypes) {
+        this.productNumber = productNumber;
         this.name = name;
         this.basePrice = basePrice;
         this.description = description;
@@ -35,6 +42,7 @@ public class Car {
         this.model = model;
         this.make = make;
         this.stockQuantity = stockQuantity;
+        this.attributeTypes = attributeTypes;
     }
 
     public String getProductNumber() {
@@ -99,5 +107,13 @@ public class Car {
 
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
+    }
+
+    public Collection<AttributeType> getAttributeTypes() {
+        return attributeTypes;
+    }
+
+    public void setAttributeTypes(Collection<AttributeType> attributeTypes) {
+        this.attributeTypes = attributeTypes;
     }
 }

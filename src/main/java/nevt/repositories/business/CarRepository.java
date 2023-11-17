@@ -10,4 +10,7 @@ import java.util.List;
 public interface CarRepository extends MongoRepository<Car, String> {
     List<Car> findTop6ByOrderByStockQuantityDesc();
 
+    List<Car> findTop6ByOrderByYearDesc();
+
+    List<Car> findTop6ByOrderByBasePriceAsc();
 }

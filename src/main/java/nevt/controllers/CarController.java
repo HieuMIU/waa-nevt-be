@@ -21,8 +21,20 @@ public class CarController {
   private CarService carService;
 
   @GetMapping("/todaypick")
-  public ResponseEntity<?> getTodayPickCar() {
+  public ResponseEntity<?> getTodayPickCars() {
     List<CarDTO> carDTOs = carService.getTop6CarsOrderedByStockQuantity();
+    return new ResponseEntity<List<CarDTO>> (carDTOs, HttpStatus.OK);
+  }
+
+  @GetMapping("/trending")
+  public ResponseEntity<?> getTrendingCars() {
+    List<CarDTO> carDTOs = carService.getTop6ByOrderByYearDesc();
+    return new ResponseEntity<List<CarDTO>> (carDTOs, HttpStatus.OK);
+  }
+
+  @GetMapping("/affordable")
+  public ResponseEntity<?> getAffordableCars() {
+    List<CarDTO> carDTOs = carService.getTop6ByOrderByBasePriceAsc();
     return new ResponseEntity<List<CarDTO>> (carDTOs, HttpStatus.OK);
   }
 

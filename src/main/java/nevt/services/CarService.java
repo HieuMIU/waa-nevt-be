@@ -36,4 +36,14 @@ public class CarService {
         List<Car> cars = carRepository.findTop6ByOrderByStockQuantityDesc();
         return CarAdapter.getCarDTOList(cars);
     }
+
+    public List<CarDTO> getTop6ByOrderByBasePriceAsc() {
+        List<Car> cars = carRepository.findTop6ByOrderByBasePriceAsc();
+        return CarAdapter.getCarDTOList(cars);
+    }
+
+    public List<CarDTO> getTop6ByOrderByYearDesc() {
+        List<Car> cars = carRepository.findTop6ByOrderByYearDesc();
+        return CarAdapter.getCarDTOList(cars);
+    }
 }

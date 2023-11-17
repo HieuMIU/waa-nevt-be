@@ -26,9 +26,11 @@ public class CarDTO {
 
     private Collection<AttributeTypeDTO> attributeTypes = new ArrayList<>();
 
+    private Collection<String> images = new ArrayList<>();
+
     public CarDTO(){}
 
-    public CarDTO(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeTypeDTO> attributeTypes) {
+    public CarDTO(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeTypeDTO> attributeTypes, Collection<String> images) {
         this.productNumber = productNumber;
         this.name = name;
         this.basePrice = basePrice;
@@ -38,6 +40,7 @@ public class CarDTO {
         this.make = make;
         this.stockQuantity = stockQuantity;
         this.attributeTypes = attributeTypes;
+        this.images = images;
     }
 
     public String getProductNumber() {
@@ -110,5 +113,13 @@ public class CarDTO {
 
     public void setAttributeTypes(Collection<AttributeTypeDTO> attributeTypes) {
         this.attributeTypes = attributeTypes;
+    }
+
+    public Collection<String> getImages() {
+        return images;
+    }
+
+    public void setImages(Collection<String> images) {
+        this.images = images;
     }
 }

@@ -7,6 +7,7 @@ import nevt.repositories.business.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,10 @@ public class CarService {
         else{
             return null;
         }
+    }
+
+    public List<CarDTO> getTop6CarsOrderedByStockQuantity() {
+        List<Car> cars = carRepository.findTop6ByOrderByStockQuantityDesc();
+        return CarAdapter.getCarDTOList(cars);
     }
 }

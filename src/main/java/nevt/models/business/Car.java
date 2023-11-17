@@ -29,11 +29,13 @@ public class Car {
 
     private Collection<AttributeType> attributeTypes = new ArrayList<AttributeType>();
 
+    private Collection<String> images = new ArrayList<>();
+
     public Car() {
 
     }
 
-    public Car(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeType> attributeTypes) {
+    public Car(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeType> attributeTypes, Collection<String> images) {
         this.productNumber = productNumber;
         this.name = name;
         this.basePrice = basePrice;
@@ -43,6 +45,7 @@ public class Car {
         this.make = make;
         this.stockQuantity = stockQuantity;
         this.attributeTypes = attributeTypes;
+        this.images = images;
     }
 
     public String getProductNumber() {
@@ -115,5 +118,13 @@ public class Car {
 
     public void setAttributeTypes(Collection<AttributeType> attributeTypes) {
         this.attributeTypes = attributeTypes;
+    }
+
+    public Collection<String> getImages() {
+        return images;
+    }
+
+    public void setImages(Collection<String> images) {
+        this.images = images;
     }
 }

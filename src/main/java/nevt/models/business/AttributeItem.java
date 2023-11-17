@@ -7,11 +7,11 @@ public class AttributeItem {
 
     private String value;
 
-    private double addtionalPrice;
+    private double additionalPrice;
 
     public AttributeItem(String value, double addtionalPrice) {
         this.value = value;
-        this.addtionalPrice = addtionalPrice;
+        this.additionalPrice = addtionalPrice;
     }
 
     public AttributeItem() {}
@@ -24,11 +24,11 @@ public class AttributeItem {
         this.value = value;
     }
 
-    public double getAddtionalPrice() {
-        return addtionalPrice;
+    public double getAdditionalPrice() {
+        return additionalPrice;
     }
 
-    public void setAddtionalPrice(double addtionalPrice) {
-        this.addtionalPrice = addtionalPrice;
+    public void setAdditionalPrice(double addtionalPrice) {
+        this.additionalPrice = addtionalPrice;
     }
 }

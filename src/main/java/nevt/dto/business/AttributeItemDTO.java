@@ -3,11 +3,11 @@ package nevt.dto.business;
 public class AttributeItemDTO {
     private String value;
 
-    private double addtionalPrice;
+    private double additionalPrice;
 
     public AttributeItemDTO(String value, double addtionalPrice) {
         this.value = value;
-        this.addtionalPrice = addtionalPrice;
+        this.additionalPrice = addtionalPrice;
     }
 
     public AttributeItemDTO() {
@@ -21,11 +21,11 @@ public class AttributeItemDTO {
         this.value = value;
     }
 
-    public double getAddtionalPrice() {
-        return addtionalPrice;
+    public double getAdditionalPrice() {
+        return additionalPrice;
     }
 
-    public void setAddtionalPrice(double addtionalPrice) {
-        this.addtionalPrice = addtionalPrice;
+    public void setAdditionalPrice(double addtionalPrice) {
+        this.additionalPrice = addtionalPrice;
     }
 }

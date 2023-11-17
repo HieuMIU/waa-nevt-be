@@ -3,29 +3,31 @@ package nevt.controllers;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.swing.text.html.HTML;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
 import java.nio.file.StandardCopyOption;
-import org.springframework.beans.factory.annotation.Value;
 
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/images")
 @RestController
 public class FileUploadController {
 
-    private static final String UPLOAD_DIR = "./uploads";
-
+    @Value("${imagesFolder}")
+    String imagesFolder;
     @PostMapping("/upload")
     public ResponseEntity<String> handleFileUpload(@RequestPart("file") MultipartFile file) {
 
-        File uploadDir = new File(UPLOAD_DIR);
+        File uploadDir = new File(imagesFolder);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
         }
@@ -42,5 +44,16 @@ public class FileUploadController {
         } catch (IOException ex) {
             return ResponseEntity.status(500).body("Failed to upload the file");
         }
+    }
+
+    @GetMapping("/images/{imageName}")
+    public ResponseEntity<Resource> getImage(@PathVariable String imageName) throws IOException {
+        Path imagePath = Paths.get("classpath:images/" + imageName);
+        Resource imageResource = new org.springframework.core.io.PathResource(imagePath);
+
+        return ResponseEntity.ok()
+                .contentLength(Files.size(imagePath))
+                .header("Content-Type", "image/jpg") // Adjust the content type based on your image type
+                .body(imageResource);
     }
 }

@@ -1,5 +1,6 @@
 package nevt.services;
 
+import nevt.config.AppConfig;
 import nevt.dto.business.AttributeItemDTO;
 import nevt.dto.business.AttributeTypeDTO;
 import nevt.dto.business.CarDTO;
@@ -7,17 +8,26 @@ import nevt.models.business.AttributeItem;
 import nevt.models.business.AttributeType;
 import nevt.models.business.Car;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Component
 public class CarAdapter {
 
-    private static final String UPLOAD_DIR = "\\uploads";
+    @Autowired
+    private static AppConfig appConfig;
+
+    @Autowired
+    public CarAdapter(AppConfig appConfig) {
+        CarAdapter.appConfig = appConfig;
+    }
 
     public static CarDTO getCarDTO(Car car){
         CarDTO carDTO = new CarDTO();
@@ -41,16 +51,8 @@ public class CarAdapter {
 
         //copy images
         Collection<String> images = new ArrayList<>();
-        String path = "";
-        try{
-            ClassPathResource resource = new ClassPathResource("");
-            Path fullPath = resource.getFile().toPath().toAbsolutePath().getParent().getParent();
-            path = fullPath.toString();
-        } catch(Exception e){
-        }
-        String finalPath = path  + UPLOAD_DIR;
         car.getImages().forEach(o -> {
-            images.add(finalPath + "\\" + o);
+            images.add(appConfig.getBaseUrl() + "/images/" + o);
         });
         carDTO.setImages(images);
         return carDTO;

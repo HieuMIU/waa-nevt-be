@@ -14,6 +14,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -58,6 +59,12 @@ public class SeedDataConfig implements CommandLineRunner {
                     images);
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616944_1.jpg",
+                    "616944_2.jpg",
+                    "616944_3.jpg",
+                    "616944_4.jpg");
+
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Toyota Camry 2012",
                     23000D,
@@ -68,8 +75,16 @@ public class SeedDataConfig implements CommandLineRunner {
                     7,
                     types,
                     images);
+
+
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616920_1.jpg",
+                    "616920_2.jpg",
+                    "616920_3.jpg",
+                    "616920_4.jpg"
+            );
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Honda Accord 2023",
                     40000D,
@@ -82,6 +97,13 @@ public class SeedDataConfig implements CommandLineRunner {
                     images);
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616949_1.jpg",
+                    "616949_2.jpg",
+                    "616949_3.jpg",
+                    "616949_4.jpg",
+                    "616949_5.jpg"
+            );
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Toyota Corolla 2023",
                     40000D,
@@ -94,6 +116,12 @@ public class SeedDataConfig implements CommandLineRunner {
                     images);
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616943_1.jpg",
+                    "616943_2.jpg",
+                    "616943_3.jpg",
+                    "616943_4.jpg"
+            );
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Toyota RAV4 2021",
                     40000D,

@@ -1,19 +1,17 @@
 package nevt.config;
 
 import nevt.common.extensions.GuidGenerator;
-import nevt.dto.business.AttributeItemDTO;
-import nevt.dto.business.AttributeTypeDTO;
-import nevt.dto.business.CarDTO;
-import nevt.models.business.AttributeItem;
-import nevt.models.business.AttributeType;
-import nevt.models.business.Car;
-import nevt.repositories.business.CarRepository;
+import nevt.dto.car.AttributeItemDTO;
+import nevt.dto.car.AttributeTypeDTO;
+import nevt.dto.car.CarDTO;
+import nevt.repositories.car.CarRepository;
 import nevt.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,8 +31,8 @@ public class SeedDataConfig implements CommandLineRunner {
         items.add(new AttributeItemDTO("red", 0));
         items.add(new AttributeItemDTO("purple", 550));
         List<AttributeItemDTO> items2 = new ArrayList<>();
-        items.add(new AttributeItemDTO("19 wheels", 0));
-        items.add(new AttributeItemDTO("21 wheels", 645));
+        items2.add(new AttributeItemDTO("19 wheels", 0));
+        items2.add(new AttributeItemDTO("21 wheels", 645));
         types.add(new AttributeTypeDTO("Paint",items));
         types.add(new AttributeTypeDTO("Wheels", items2));
 
@@ -58,6 +56,12 @@ public class SeedDataConfig implements CommandLineRunner {
                     images);
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616944_1.jpg",
+                    "616944_2.jpg",
+                    "616944_3.jpg",
+                    "616944_4.jpg");
+
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Toyota Camry 2012",
                     23000D,
@@ -68,8 +72,16 @@ public class SeedDataConfig implements CommandLineRunner {
                     7,
                     types,
                     images);
+
+
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616920_1.jpg",
+                    "616920_2.jpg",
+                    "616920_3.jpg",
+                    "616920_4.jpg"
+            );
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Honda Accord 2023",
                     40000D,
@@ -82,6 +94,13 @@ public class SeedDataConfig implements CommandLineRunner {
                     images);
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616949_1.jpg",
+                    "616949_2.jpg",
+                    "616949_3.jpg",
+                    "616949_4.jpg",
+                    "616949_5.jpg"
+            );
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Toyota Corolla 2023",
                     40000D,
@@ -94,6 +113,12 @@ public class SeedDataConfig implements CommandLineRunner {
                     images);
             carService.add(carDTO);
 
+            images = Arrays.asList(
+                    "616943_1.jpg",
+                    "616943_2.jpg",
+                    "616943_3.jpg",
+                    "616943_4.jpg"
+            );
             carDTO = new CarDTO(GuidGenerator.generateGuid(),
                     "Toyota RAV4 2021",
                     40000D,

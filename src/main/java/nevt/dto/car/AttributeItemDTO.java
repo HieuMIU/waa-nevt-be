@@ -1,4 +1,4 @@
-package nevt.dto.business;
+package nevt.dto.car;
 
 public class AttributeItemDTO {
     private String value;

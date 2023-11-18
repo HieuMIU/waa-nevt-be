@@ -1,4 +1,4 @@
-package nevt.models.business;
+package nevt.models.car;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

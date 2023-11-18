@@ -1,7 +1,7 @@
 package nevt.controllers;
 
 import nevt.common.CustomErrorType;
-import nevt.dto.business.CarDTO;
+import nevt.dto.car.CarDTO;
 import nevt.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

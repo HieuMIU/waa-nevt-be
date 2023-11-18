@@ -1,8 +1,10 @@
 package nevt.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.PathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
@@ -46,14 +48,24 @@ public class FileUploadController {
         }
     }
 
-    @GetMapping("/images/{imageName}")
+    @GetMapping("/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) throws IOException {
-        Path imagePath = Paths.get("classpath:images/" + imageName);
-        Resource imageResource = new org.springframework.core.io.PathResource(imagePath);
+        try {
+            // Assuming the imagesFolder is the root folder where your images are stored
+            Path imagePath = Paths.get(imagesFolder, imageName);
+            Resource imageResource = new PathResource(imagePath);
 
-        return ResponseEntity.ok()
-                .contentLength(Files.size(imagePath))
-                .header("Content-Type", "image/jpg") // Adjust the content type based on your image type
-                .body(imageResource);
+            if (imageResource.exists()) {
+                return ResponseEntity.ok()
+                        .contentLength(Files.size(imagePath))
+                        .header("Content-Type", "image/jpg") // Adjust the content type based on your image type
+                        .body(imageResource);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (IOException e) {
+            System.out.println("Error fetching image: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

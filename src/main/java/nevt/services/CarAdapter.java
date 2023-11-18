@@ -47,10 +47,7 @@ public class CarAdapter {
         carDTO.setAttributeTypes(types);
 
         //copy images
-        Collection<String> images = new ArrayList<>();
-        car.getImages().forEach(o -> {
-            images.add(appConfig.getBaseUrl() + "/images/" + o);
-        });
+        Collection<String> images = new ArrayList<>(car.getImages());
         carDTO.setImages(images);
         return carDTO;
     }

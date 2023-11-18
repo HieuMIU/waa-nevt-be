@@ -1,13 +1,15 @@
-package nevt.dto.business;
+package nevt.models.car;
 
-import nevt.models.business.AttributeType;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-public class CarDTO {
+@Document
+public class Car {
 
+    @Id
     private String productNumber;
 
     private String name;
@@ -24,13 +26,15 @@ public class CarDTO {
 
     private int stockQuantity;
 
-    private Collection<AttributeTypeDTO> attributeTypes = new ArrayList<>();
+    private Collection<AttributeType> attributeTypes = new ArrayList<AttributeType>();
 
     private Collection<String> images = new ArrayList<>();
 
-    public CarDTO(){}
+    public Car() {
 
-    public CarDTO(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeTypeDTO> attributeTypes, Collection<String> images) {
+    }
+
+    public Car(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeType> attributeTypes, Collection<String> images) {
         this.productNumber = productNumber;
         this.name = name;
         this.basePrice = basePrice;
@@ -107,11 +111,11 @@ public class CarDTO {
         this.stockQuantity = stockQuantity;
     }
 
-    public Collection<AttributeTypeDTO> getAttributeTypes() {
+    public Collection<AttributeType> getAttributeTypes() {
         return attributeTypes;
     }
 
-    public void setAttributeTypes(Collection<AttributeTypeDTO> attributeTypes) {
+    public void setAttributeTypes(Collection<AttributeType> attributeTypes) {
         this.attributeTypes = attributeTypes;
     }
 

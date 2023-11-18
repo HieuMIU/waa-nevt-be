@@ -1,13 +1,10 @@
 package nevt.config;
 
 import nevt.common.extensions.GuidGenerator;
-import nevt.dto.business.AttributeItemDTO;
-import nevt.dto.business.AttributeTypeDTO;
-import nevt.dto.business.CarDTO;
-import nevt.models.business.AttributeItem;
-import nevt.models.business.AttributeType;
-import nevt.models.business.Car;
-import nevt.repositories.business.CarRepository;
+import nevt.dto.car.AttributeItemDTO;
+import nevt.dto.car.AttributeTypeDTO;
+import nevt.dto.car.CarDTO;
+import nevt.repositories.car.CarRepository;
 import nevt.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

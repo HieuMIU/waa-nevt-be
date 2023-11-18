@@ -1,19 +1,16 @@
 package nevt.services;
 
 import nevt.config.AppConfig;
-import nevt.dto.business.AttributeItemDTO;
-import nevt.dto.business.AttributeTypeDTO;
-import nevt.dto.business.CarDTO;
-import nevt.models.business.AttributeItem;
-import nevt.models.business.AttributeType;
-import nevt.models.business.Car;
+import nevt.dto.car.AttributeItemDTO;
+import nevt.dto.car.AttributeTypeDTO;
+import nevt.dto.car.CarDTO;
+import nevt.models.car.AttributeItem;
+import nevt.models.car.AttributeType;
+import nevt.models.car.Car;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

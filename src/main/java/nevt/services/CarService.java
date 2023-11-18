@@ -1,9 +1,9 @@
 package nevt.services;
 
 import nevt.common.extensions.GuidGenerator;
-import nevt.dto.business.CarDTO;
-import nevt.models.business.Car;
-import nevt.repositories.business.CarRepository;
+import nevt.dto.car.CarDTO;
+import nevt.models.car.Car;
+import nevt.repositories.car.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

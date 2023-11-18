@@ -1,6 +1,6 @@
-package nevt.repositories.business;
+package nevt.repositories.car;
 
-import nevt.models.business.Car;
+import nevt.models.car.Car;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

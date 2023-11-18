@@ -1,10 +1,7 @@
-package nevt.dto.business;
-
-import nevt.models.business.AttributeItem;
+package nevt.dto.car;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class AttributeTypeDTO {
     private String type;

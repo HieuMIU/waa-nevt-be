@@ -34,8 +34,8 @@ public class SeedDataConfig implements CommandLineRunner {
         items.add(new AttributeItemDTO("red", 0));
         items.add(new AttributeItemDTO("purple", 550));
         List<AttributeItemDTO> items2 = new ArrayList<>();
-        items.add(new AttributeItemDTO("19 wheels", 0));
-        items.add(new AttributeItemDTO("21 wheels", 645));
+        items2.add(new AttributeItemDTO("19 wheels", 0));
+        items2.add(new AttributeItemDTO("21 wheels", 645));
         types.add(new AttributeTypeDTO("Paint",items));
         types.add(new AttributeTypeDTO("Wheels", items2));
 

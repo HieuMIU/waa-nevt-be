@@ -1,29 +1,15 @@
 package nevt.services;
 
-import nevt.common.extensions.GuidGenerator;
-import nevt.config.AppConfig;
-import nevt.dto.car.AttributeItemDTO;
-import nevt.dto.car.AttributeTypeDTO;
-import nevt.dto.car.CarDTO;
 import nevt.dto.order.AddressDTO;
 import nevt.dto.order.CardDTO;
 import nevt.dto.order.OrderDTO;
 import nevt.dto.order.OrderItemDTO;
-import nevt.models.car.AttributeItem;
-import nevt.models.car.AttributeType;
-import nevt.models.car.Car;
 import nevt.models.order.Address;
 import nevt.models.order.Card;
 import nevt.models.order.Order;
 import nevt.models.order.OrderItem;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 @Component
 public class OrderAdapter {
@@ -36,9 +22,11 @@ public class OrderAdapter {
             return null;
         }
         return new OrderDTO(
+                order.getOrderId(),
                 order.getItems().stream().map(OrderAdapter::getOrderItemDTO).toList(),
                 order.getEmail(),
                 order.getOrderStatus(),
+                order.getDate(),
                 order.getTotal(),
                 getCardDTO(order.getCard()),
                 getAddressDTO(order.getAddress())
@@ -89,13 +77,13 @@ public class OrderAdapter {
         }
         return new Order(
                 dto.getItems().stream().map(OrderAdapter::getOrderItem).toList(),
-                GuidGenerator.generateGuid(),
+                dto.getOrderId(),
                 dto.getEmail(),
                 dto.getOrderStatus(),
                 dto.getTotal(),
+                dto.getDate(),
                 getCard(dto.getCard()),
-                getAddress(dto.getAddress())
-        );
+                getAddress(dto.getAddress()));
     }
 
     private static OrderItem getOrderItem(OrderItemDTO dto) {

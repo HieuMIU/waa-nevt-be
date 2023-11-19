@@ -1,5 +1,6 @@
 package nevt.controllers;
 
+import nevt.common.constants.OrderStatus;
 import nevt.dto.order.OrderDTO;
 import nevt.models.order.Order;
 import nevt.services.OrderService;
@@ -15,8 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/orders")
+@CrossOrigin(origins = "*")
 @RestController
 public class OrderController {
 
@@ -28,6 +29,18 @@ public class OrderController {
     public ResponseEntity<?> createOrder(@RequestBody OrderDTO orderDTO) {
         orderService.add(orderDTO);
         return new ResponseEntity<>(orderDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("manage")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+    public ResponseEntity<?> getOrderForEmployees(@RequestParam(required = false) String orderStatus) {
+
+        OrderStatus status = null;
+        if(!orderStatus.isBlank())
+            status = OrderStatus.valueOf(orderStatus);
+
+        List<OrderDTO> orders = orderService.findByOrderStatusOrderByDateDesc(status);
+        return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
     @GetMapping("")
@@ -44,6 +57,20 @@ public class OrderController {
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
+    @PostMapping("manage/ship")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+    public ResponseEntity<?> shipOrder(@RequestBody String orderId) {
+        OrderDTO orderDTO = orderService.shipOrder(orderId);
+        return new ResponseEntity<>(orderDTO,HttpStatus.OK);
+    }
+
+    @PostMapping("manage/deliver")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+    public ResponseEntity<?> deliverOrder(@RequestBody String orderId) {
+        OrderDTO orderDTO = orderService.deliverOrder(orderId);
+        return new ResponseEntity<>(orderDTO,HttpStatus.OK);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException exception) {
         Map<String,Object> fieldErrorMap = new HashMap<>();
@@ -57,4 +84,5 @@ public class OrderController {
         map.put("status", HttpStatus.BAD_REQUEST);
         return  new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
     }
+
 }

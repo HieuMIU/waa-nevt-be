@@ -48,7 +48,7 @@ public class CarController {
     return new ResponseEntity<CarDTO> (carDTO, HttpStatus.OK);
   }
 
-  @PreAuthorize("hasRole('EMPLOYEE')")
+  @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
   @PostMapping("")
   public ResponseEntity<?> handlePost(@RequestBody CarDTO carDTO) {
     CarDTO createdCarDTO = carService.add(carDTO);

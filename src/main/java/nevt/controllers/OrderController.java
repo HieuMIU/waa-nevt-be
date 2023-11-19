@@ -32,7 +32,7 @@ public class OrderController {
     }
 
     @GetMapping("manage")
-    @PreAuthorize("hasRole('EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> getOrderForEmployees(@RequestParam(required = false) String orderStatus) {
 
         OrderStatus status = null;
@@ -58,14 +58,14 @@ public class OrderController {
     }
 
     @PostMapping("manage/ship")
-    @PreAuthorize("hasRole('EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> shipOrder(@RequestBody String orderId) {
         OrderDTO orderDTO = orderService.shipOrder(orderId);
         return new ResponseEntity<>(orderDTO,HttpStatus.OK);
     }
 
     @PostMapping("manage/deliver")
-    @PreAuthorize("hasRole('EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> deliverOrder(@RequestBody String orderId) {
         OrderDTO orderDTO = orderService.deliverOrder(orderId);
         return new ResponseEntity<>(orderDTO,HttpStatus.OK);

@@ -19,12 +19,17 @@ public class Order {
 
     private double total;
 
-    public Order(Collection<OrderItem> items, String orderId, String email, OrderStatus orderStatus, double total) {
+    private Card card;
+    private Address address;
+
+    public Order(Collection<OrderItem> items, String orderId, String email, OrderStatus orderStatus, double total, Card card, Address address) {
         this.items = items;
         this.orderId = orderId;
         this.email = email;
         this.orderStatus = orderStatus;
         this.total = total;
+        this.card = card;
+        this.address = address;
     }
 
     public String getOrderId() {
@@ -67,6 +72,22 @@ public class Order {
         this.items = items;
     }
 
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -75,6 +96,8 @@ public class Order {
                 ", email='" + email + '\'' +
                 ", orderStatus=" + orderStatus +
                 ", total=" + total +
+                ", card=" + card +
+                ", address=" + address +
                 '}';
     }
 }

@@ -13,11 +13,17 @@ public class OrderDTO {
 
     private double total;
 
-    public OrderDTO(Collection<OrderItemDTO> items, String email, OrderStatus orderStatus, double total) {
+    private CardDTO card;
+
+    private AddressDTO address;
+
+    public OrderDTO(Collection<OrderItemDTO> items, String email, OrderStatus orderStatus, double total, CardDTO card, AddressDTO address) {
         this.items = items;
         this.email = email;
         this.orderStatus = orderStatus;
         this.total = total;
+        this.card = card;
+        this.address = address;
     }
 
     public double getTotal() {
@@ -52,6 +58,22 @@ public class OrderDTO {
         this.items = items;
     }
 
+    public CardDTO getCard() {
+        return card;
+    }
+
+    public void setCard(CardDTO card) {
+        this.card = card;
+    }
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "OrderDTO{" +
@@ -59,6 +81,8 @@ public class OrderDTO {
                 ", email='" + email + '\'' +
                 ", orderStatus=" + orderStatus +
                 ", total=" + total +
+                ", card=" + card +
+                ", address=" + address +
                 '}';
     }
 }

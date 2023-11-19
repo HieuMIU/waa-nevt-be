@@ -2,28 +2,34 @@ package nevt.dto.order;
 
 import nevt.common.constants.OrderStatus;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 public class OrderDTO {
+    private String orderId;
     private Collection<OrderItemDTO> items;
     private String email;
     private OrderStatus orderStatus;
 
     private double total;
 
+    private LocalDate date;
+
     private CardDTO card;
 
     private AddressDTO address;
 
-    public OrderDTO(Collection<OrderItemDTO> items, String email, OrderStatus orderStatus, double total, CardDTO card, AddressDTO address) {
+    public OrderDTO(String orderId, Collection<OrderItemDTO> items, String email, OrderStatus orderStatus, LocalDate date, double total, CardDTO card, AddressDTO address) {
+            this.orderId = orderId;
         this.items = items;
         this.email = email;
         this.orderStatus = orderStatus;
         this.total = total;
         this.card = card;
         this.address = address;
+        this.date = date;
     }
 
     public double getTotal() {
@@ -58,6 +64,18 @@ public class OrderDTO {
         this.items = items;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
     public CardDTO getCard() {
         return card;
     }
@@ -72,6 +90,10 @@ public class OrderDTO {
 
     public void setAddress(AddressDTO address) {
         this.address = address;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     @Override

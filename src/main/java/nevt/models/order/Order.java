@@ -5,6 +5,7 @@ import nevt.dto.order.OrderItemDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,12 +18,13 @@ public class Order {
     private String email;
     private OrderStatus orderStatus;
 
+    private LocalDate date;
     private double total;
 
     private Card card;
     private Address address;
 
-    public Order(Collection<OrderItem> items, String orderId, String email, OrderStatus orderStatus, double total, Card card, Address address) {
+    public Order(Collection<OrderItem> items, String orderId, String email, OrderStatus orderStatus, double total, LocalDate date, Card card, Address address) {
         this.items = items;
         this.orderId = orderId;
         this.email = email;
@@ -30,6 +32,7 @@ public class Order {
         this.total = total;
         this.card = card;
         this.address = address;
+        this.date = date;
     }
 
     public String getOrderId() {
@@ -86,6 +89,14 @@ public class Order {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override

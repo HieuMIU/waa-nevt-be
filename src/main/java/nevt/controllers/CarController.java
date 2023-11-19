@@ -13,8 +13,8 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/cars")
+@CrossOrigin(origins = "*")
 public class CarController {
 
   @Autowired
@@ -48,7 +48,7 @@ public class CarController {
     return new ResponseEntity<CarDTO> (carDTO, HttpStatus.OK);
   }
 
-  @PreAuthorize("hasRole('USER')")
+  @PreAuthorize("hasRole('EMPLOYEE')")
   @PostMapping("")
   public ResponseEntity<?> handlePost(@RequestBody CarDTO carDTO) {
     CarDTO createdCarDTO = carService.add(carDTO);

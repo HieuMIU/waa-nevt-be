@@ -22,6 +22,11 @@ public class CarService {
         return carDTO;
     }
 
+    public CarDTO update(CarDTO carDTO){
+        carRepository.save(CarAdapter.getCar(carDTO));
+        return carDTO;
+    }
+
     public CarDTO findByProductNumber(String productNumber){
         Optional<Car> carOptional = carRepository.findById(productNumber);
         if (carOptional.isPresent()){

@@ -82,6 +82,11 @@ public class OrderController {
             map.put("status", HttpStatus.BAD_REQUEST);
             return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
         }
+
+        User user = userService.getCurrentUser();
+        if (!user.getEmail().equals(email)) {
+            return new ResponseEntity<>(new CustomErrorType("Suspicious activity"), HttpStatus.FORBIDDEN );
+        }
         List<OrderDTO> orders = orderService.findByEmail(email);
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }

@@ -20,6 +20,12 @@ public class CarController {
   @Autowired
   private CarService carService;
 
+  @GetMapping("")
+  public ResponseEntity<?> getTodayPickCars(@RequestParam(required = false) String searchKey) {
+    List<CarDTO> carDTOs = carService.filterCarByName(searchKey);
+    return new ResponseEntity<List<CarDTO>> (carDTOs, HttpStatus.OK);
+  }
+
   @GetMapping("/todaypick")
   public ResponseEntity<?> getTodayPickCars() {
     List<CarDTO> carDTOs = carService.getTop6CarsOrderedByStockQuantity();

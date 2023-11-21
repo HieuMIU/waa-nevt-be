@@ -1,10 +1,25 @@
 package nevt.dto.account;
 
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class SignUpRequest {
+
+  @NotEmpty
+  @Size(min = 2, max = 50)
   String firstName;
+
+  @NotEmpty
+  @Size(min = 2, max = 50)
   String lastName;
+
+  @NotEmpty
+  @Size(min = 2, max = 50)
   String email;
+
+  @NotEmpty
+  @Size(min = 6, max = 50)
   String password;
 
   public SignUpRequest() {

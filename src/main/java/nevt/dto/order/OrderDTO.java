@@ -1,5 +1,7 @@
 package nevt.dto.order;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import nevt.common.constants.OrderStatus;
 
 import java.time.LocalDate;
@@ -8,17 +10,29 @@ import java.util.Collection;
 import java.util.List;
 
 public class OrderDTO {
+
     private String orderId;
+
+    @NotEmpty
     private Collection<OrderItemDTO> items;
+
+    @NotEmpty
     private String email;
+
+    @NotEmpty
     private OrderStatus orderStatus;
+
+    @NotNull
 
     private double total;
 
     private LocalDate date;
 
+    @NotNull
+
     private CardDTO card;
 
+    @NotNull
     private AddressDTO address;
 
     public OrderDTO(String orderId, Collection<OrderItemDTO> items, String email, OrderStatus orderStatus, LocalDate date, double total, CardDTO card, AddressDTO address) {

@@ -17,7 +17,8 @@ public class CarService {
     private CarRepository carRepository;
 
     public CarDTO add(CarDTO carDTO){
-        carDTO.setProductNumber(GuidGenerator.generateGuid());
+        if(carDTO.getProductNumber() == null || carDTO.getProductNumber().isEmpty())
+            carDTO.setProductNumber(GuidGenerator.generateGuid());
         carRepository.save(CarAdapter.getCar(carDTO));
         return carDTO;
     }

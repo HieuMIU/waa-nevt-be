@@ -1,5 +1,10 @@
 package nevt.dto.car;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -7,27 +12,43 @@ public class CarDTO {
 
     private String productNumber;
 
+    @NotEmpty
+    @Size(min = 2, max = 100)
     private String name;
 
+    @NotNull
+    @Min(value = 0)
     private Double basePrice;
 
+    @NotEmpty
+    @Size(min = 2)
     private String description;
 
-    private int year;
+    @NotNull
+    @Min(value = 1900)
+    private Integer year;
 
+    @NotEmpty
+    @Size(min = 2)
     private String model;
 
+    @NotEmpty
+    @Size(min = 2)
     private String make;
 
-    private int stockQuantity;
+    @NotNull
+    @Min(value = 0)
+    private Integer stockQuantity;
 
+
+    @NotEmpty
     private Collection<AttributeTypeDTO> attributeTypes = new ArrayList<>();
 
     private Collection<String> images = new ArrayList<>();
 
     public CarDTO(){}
 
-    public CarDTO(String productNumber, String name, Double basePrice, String description, int year, String model, String make, int stockQuantity, Collection<AttributeTypeDTO> attributeTypes, Collection<String> images) {
+    public CarDTO(String productNumber, String name, Double basePrice, String description, Integer year, String model, String make, Integer stockQuantity, Collection<AttributeTypeDTO> attributeTypes, Collection<String> images) {
         this.productNumber = productNumber;
         this.name = name;
         this.basePrice = basePrice;
@@ -72,11 +93,11 @@ public class CarDTO {
         this.description = description;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -96,11 +117,11 @@ public class CarDTO {
         this.make = make;
     }
 
-    public int getStockQuantity() {
+    public Integer getStockQuantity() {
         return stockQuantity;
     }
 
-    public void setStockQuantity(int stockQuantity) {
+    public void setStockQuantity(Integer stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 

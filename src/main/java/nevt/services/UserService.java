@@ -44,4 +44,9 @@ public class UserService {
         User user = (User) authentication.getPrincipal();
         return user;
     }
+
+    //use for seed data
+    public void add(User user){
+        userRepository.save(user);
+    }
 }

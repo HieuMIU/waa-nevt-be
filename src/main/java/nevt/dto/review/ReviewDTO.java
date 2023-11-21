@@ -1,12 +1,21 @@
 package nevt.dto.review;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class ReviewDTO {
     private String id;
 
+    @NotEmpty
+    @Size(min = 2, max = 50)
     private String email;
 
+    @NotEmpty
+    @Size(min = 2, max = 50)
     private String productNumber;
 
+    @NotEmpty
+    @Size(min = 2)
     private String comment;
 
     public ReviewDTO() {}

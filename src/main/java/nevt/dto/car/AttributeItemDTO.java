@@ -1,8 +1,14 @@
 package nevt.dto.car;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class AttributeItemDTO {
+
+    @NotEmpty
     private String value;
 
+    @NotNull
     private double additionalPrice;
 
     public AttributeItemDTO(String value, double addtionalPrice) {

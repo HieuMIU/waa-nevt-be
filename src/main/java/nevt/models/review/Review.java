@@ -1,10 +1,10 @@
-package nevt.models.rating;
+package nevt.models.review;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Rating {
+public class Review {
     @Id
     private String id;
 
@@ -12,17 +12,14 @@ public class Rating {
 
     private String productNumber;
 
-    private int rating;
-
     private String comment;
 
-    public Rating() {}
+    public Review() {}
 
-    public Rating(String id, String email, String productNumber, int rating, String comment) {
+    public Review(String id, String email, String productNumber, String comment) {
         this.id = id;
         this.email = email;
         this.productNumber = productNumber;
-        this.rating = rating;
         this.comment = comment;
     }
 
@@ -48,14 +45,6 @@ public class Rating {
 
     public void setProductNumber(String productNumber) {
         this.productNumber = productNumber;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public String getComment() {

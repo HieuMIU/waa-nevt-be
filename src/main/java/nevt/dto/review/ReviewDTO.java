@@ -1,26 +1,20 @@
-package nevt.dto.rating;
+package nevt.dto.review;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-public class RatingDTO {
+public class ReviewDTO {
     private String id;
 
     private String email;
 
     private String productNumber;
 
-    private int rating;
-
     private String comment;
 
-    public RatingDTO() {}
+    public ReviewDTO() {}
 
-    public RatingDTO(String id, String email, String productNumber, int rating, String comment) {
+    public ReviewDTO(String id, String email, String productNumber, String comment) {
         this.id = id;
         this.email = email;
         this.productNumber = productNumber;
-        this.rating = rating;
         this.comment = comment;
     }
 
@@ -46,14 +40,6 @@ public class RatingDTO {
 
     public void setProductNumber(String productNumber) {
         this.productNumber = productNumber;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public String getComment() {

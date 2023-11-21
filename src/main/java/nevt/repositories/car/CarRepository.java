@@ -13,4 +13,6 @@ public interface CarRepository extends MongoRepository<Car, String> {
     List<Car> findTop6ByOrderByYearDesc();
 
     List<Car> findTop6ByOrderByBasePriceAsc();
+
+    List<Car> findCarsByNameContainsIgnoreCase(String searchKey);
 }

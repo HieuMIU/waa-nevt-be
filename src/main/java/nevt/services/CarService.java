@@ -51,4 +51,13 @@ public class CarService {
         List<Car> cars = carRepository.findTop6ByOrderByYearDesc();
         return CarAdapter.getCarDTOList(cars);
     }
+
+    public List<CarDTO> filterCarByName(String searchKey) {
+        List<Car> cars;
+        if(searchKey == null)
+            cars = carRepository.findAll();
+        else
+            cars = carRepository.findCarsByNameContainsIgnoreCase(searchKey);
+        return CarAdapter.getCarDTOList(cars);
+    }
 }

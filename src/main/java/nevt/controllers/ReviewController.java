@@ -1,6 +1,8 @@
 package nevt.controllers;
 
+import nevt.common.exceptionhandler.CustomErrorType;
 import nevt.dto.review.ReviewDTO;
+import nevt.services.OrderService;
 import nevt.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +25,11 @@ public class ReviewController {
   @Autowired
   private ReviewService reviewService;
 
+  @Autowired
+  private OrderService orderService;
+
   @GetMapping("{productNumber}/{email}")
-  public ResponseEntity<?> getRating(@PathVariable String productNumber, @PathVariable String email) {
+  public ResponseEntity<?> getReview(@PathVariable String productNumber, @PathVariable String email) {
     ReviewDTO reviewDTO = reviewService.findByProductNumberAndEmail(productNumber, email);
     return new ResponseEntity<ReviewDTO> (reviewDTO, HttpStatus.OK);
   }
@@ -37,7 +42,11 @@ public class ReviewController {
 
   @PreAuthorize("hasRole('USER')")
   @PostMapping("")
-  public ResponseEntity<?> createRating(@RequestBody ReviewDTO reviewDTO) {
+  public ResponseEntity<?> createReview(@RequestBody ReviewDTO reviewDTO) {
+
+    if(!orderService.hasOrderCar(reviewDTO.getEmail(), reviewDTO.getProductNumber())) {
+        return new ResponseEntity<CustomErrorType>(new CustomErrorType("User have not ordered this car yet/ Your order does not delivery."), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     ReviewDTO createdCarDTO = reviewService.add(reviewDTO);
     return new ResponseEntity<ReviewDTO> (createdCarDTO, HttpStatus.OK);
   }

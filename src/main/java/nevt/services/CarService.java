@@ -28,6 +28,10 @@ public class CarService {
         return carDTO;
     }
 
+    public void remove(String productNumber){
+        carRepository.deleteById(productNumber);
+    }
+
     public CarDTO findByProductNumber(String productNumber){
         Optional<Car> carOptional = carRepository.findById(productNumber);
         if (carOptional.isPresent()){

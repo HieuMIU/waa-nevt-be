@@ -67,6 +67,29 @@ public class CarController {
     return new ResponseEntity<CarDTO> (createdCarDTO, HttpStatus.OK);
   }
 
+  @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+  @PutMapping("/{productNumber}")
+  public ResponseEntity<?> updateCar(@PathVariable(value = "productNumber") String productNumber, @RequestBody @Validated CarDTO carDTO) {
+    CarDTO referenceCarDTO = carService.findByProductNumber(productNumber);
+    if (referenceCarDTO == null) {
+      return new ResponseEntity<CustomErrorType>(new CustomErrorType("Car with product Number = " + productNumber + " is not available"), HttpStatus.NOT_FOUND);
+    }
+    carDTO.setProductNumber(productNumber);
+    CarDTO updatedCarDTO = carService.update(carDTO);
+    return new ResponseEntity<CarDTO> (updatedCarDTO, HttpStatus.OK);
+  }
+
+  @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+  @DeleteMapping("/{productNumber}")
+  public ResponseEntity<?> deleteCar(@PathVariable(value = "productNumber") String productNumber) {
+    CarDTO referenceCarDTO = carService.findByProductNumber(productNumber);
+    if (referenceCarDTO == null) {
+      return new ResponseEntity<CustomErrorType>(new CustomErrorType("Car with product Number = " + productNumber + " is not available"), HttpStatus.NOT_FOUND);
+    }
+    carService.remove(productNumber);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {

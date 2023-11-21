@@ -65,7 +65,7 @@ public class OrderController {
     public ResponseEntity<?> getOrderForEmployees(@RequestParam(required = false) String orderStatus) {
 
         OrderStatus status = null;
-        if(!orderStatus.isBlank())
+        if(orderStatus != null)
             status = OrderStatus.valueOf(orderStatus);
 
         List<OrderDTO> orders = orderService.findByOrderStatusOrderByDateDesc(status);
@@ -95,6 +95,9 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> shipOrder(@RequestBody String orderId) {
         OrderDTO orderDTO = orderService.shipOrder(orderId);
+        if (orderDTO == null) {
+            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Order " + orderId + " is not ready for ship"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(orderDTO,HttpStatus.OK);
     }
 
@@ -102,6 +105,9 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> deliverOrder(@RequestBody String orderId) {
         OrderDTO orderDTO = orderService.deliverOrder(orderId);
+        if (orderDTO == null) {
+            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Order " + orderId + " is not ready for deliver"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(orderDTO,HttpStatus.OK);
     }
 

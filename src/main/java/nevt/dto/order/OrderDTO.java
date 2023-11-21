@@ -19,7 +19,7 @@ public class OrderDTO {
     @NotEmpty
     private String email;
 
-    @NotEmpty
+    @NotNull
     private OrderStatus orderStatus;
 
     @NotNull

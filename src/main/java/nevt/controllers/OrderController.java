@@ -5,6 +5,7 @@ import nevt.common.constants.OrderStatus;
 import nevt.dto.car.CarDTO;
 import nevt.dto.order.OrderDTO;
 import nevt.dto.order.OrderItemDTO;
+import nevt.dto.review.ReviewDTO;
 import nevt.models.account.User;
 import nevt.services.CarService;
 import nevt.services.OrderService;
@@ -70,6 +71,12 @@ public class OrderController {
 
         List<OrderDTO> orders = orderService.findByOrderStatusOrderByDateDesc(status);
         return new ResponseEntity<>(orders,HttpStatus.OK);
+    }
+
+    @GetMapping("check-ordered/{productNumber}/{email}")
+    public ResponseEntity<?> checkAvaibleForReview(@PathVariable String productNumber, @PathVariable String email) {
+        Boolean result = orderService.hasOrderCar(email,productNumber);
+        return new ResponseEntity<Boolean> (result, HttpStatus.OK);
     }
 
     @GetMapping("")

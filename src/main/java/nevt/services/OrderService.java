@@ -48,7 +48,6 @@ public class OrderService {
     }
 
     public OrderDTO shipOrder(String orderId) {
-        //Todo: handle business error
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         if(orderOptional.isPresent())
         {
@@ -63,7 +62,6 @@ public class OrderService {
     }
 
     public OrderDTO deliverOrder(String orderId) {
-        //Todo: handle business error
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         if(orderOptional.isPresent())
         {
@@ -75,5 +73,10 @@ public class OrderService {
             }
         }
         return null;
+    }
+
+    public boolean hasOrderCar(String email, String productNumber) {
+        Order order = orderRepository.findByCarIdAndEmailAndOrderStatus(productNumber, email, OrderStatus.DELIVERED);
+        return order != null;
     }
 }

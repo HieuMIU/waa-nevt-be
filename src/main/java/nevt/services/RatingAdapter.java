@@ -17,7 +17,6 @@ public class RatingAdapter {
     public static Rating getRating(RatingDTO ratingDTO){
         Rating rating = new Rating();
         BeanUtils.copyProperties(ratingDTO, rating);
-
         return rating;
     }
 }

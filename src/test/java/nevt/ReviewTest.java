@@ -32,7 +32,7 @@ public class ReviewTest {
     }
 
     @Test
-    public void CreateReviewSuccess(){
+    public void testCreateReviewSuccess(){
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
 
@@ -62,7 +62,7 @@ public class ReviewTest {
         String carId = response.jsonPath().getString("productNumber");
 
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         response = given().contentType("application/json")
                 .when().get("cars/" + carId);
@@ -71,7 +71,7 @@ public class ReviewTest {
         Collection<OrderItemDTO> orderItems = new ArrayList<>();
         orderItems.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", orderItems, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", orderItems, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -90,7 +90,7 @@ public class ReviewTest {
                 .body(orderId)
                 .when().post("orders/manage/deliver");
 
-        ReviewDTO reviewDTO = new ReviewDTO("", "johnsmith@gmail.com", carId, "This product is so good!");
+        ReviewDTO reviewDTO = new ReviewDTO("", "dnguyen@miu.edu", carId, "This product is so good!");
 
         given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -99,7 +99,7 @@ public class ReviewTest {
                 .then()
                 .statusCode(200)
                 .and()
-                .body("email",equalTo("johnsmith@gmail.com"))
+                .body("email",equalTo("dnguyen@miu.edu"))
                 .body("productNumber",equalTo(carId))
                 .body("comment", equalTo("This product is so good!"));
 
@@ -107,7 +107,7 @@ public class ReviewTest {
     }
 
     @Test
-    public void CreateReview_Fail_NotDeliveriedOrder(){
+    public void testCreateReview_Fail_NotDeliveriedOrder(){
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
 
@@ -137,7 +137,7 @@ public class ReviewTest {
         String carId = response.jsonPath().getString("productNumber");
 
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         response = given().contentType("application/json")
                 .when().get("cars/" + carId);
@@ -146,7 +146,7 @@ public class ReviewTest {
         Collection<OrderItemDTO> orderItems = new ArrayList<>();
         orderItems.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", orderItems, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", orderItems, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -160,7 +160,7 @@ public class ReviewTest {
                 .body(orderId)
                 .when().post("orders/manage/ship");
 
-        ReviewDTO reviewDTO = new ReviewDTO("", "johnsmith@gmail.com", carId, "This product is so good!");
+        ReviewDTO reviewDTO = new ReviewDTO("", "dnguyen@miu.edu", carId, "This product is so good!");
 
         given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -173,7 +173,7 @@ public class ReviewTest {
     }
 
     @Test
-    public void GetReview_Success(){
+    public void testGetReview_Success(){
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
 
@@ -203,7 +203,7 @@ public class ReviewTest {
         String carId = response.jsonPath().getString("productNumber");
 
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         response = given().contentType("application/json")
                 .when().get("cars/" + carId);
@@ -212,7 +212,7 @@ public class ReviewTest {
         Collection<OrderItemDTO> orderItems = new ArrayList<>();
         orderItems.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", orderItems, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", orderItems, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -231,7 +231,7 @@ public class ReviewTest {
                 .body(orderId)
                 .when().post("orders/manage/deliver");
 
-        ReviewDTO reviewDTO = new ReviewDTO("", "johnsmith@gmail.com", carId, "This product is so good!");
+        ReviewDTO reviewDTO = new ReviewDTO("", "dnguyen@miu.edu", carId, "This product is so good!");
 
         given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -239,17 +239,17 @@ public class ReviewTest {
                 .when().post("reviews");
 
         given().contentType("application/json")
-                .when().get("reviews/" + carId + "/johnsmith@gmail.com")
+                .when().get("reviews/" + carId + "/dnguyen@miu.edu")
                 .then()
                 .statusCode(200)
                 .and()
-                .body("email",equalTo("johnsmith@gmail.com"))
+                .body("email",equalTo("dnguyen@miu.edu"))
                 .body("productNumber",equalTo(carId))
                 .body("comment", equalTo("This product is so good!"));
     }
 
     @Test
-    public void GetReviewsList_Success(){
+    public void testGetReviewsList_Success(){
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
 
@@ -279,7 +279,7 @@ public class ReviewTest {
         String carId = response.jsonPath().getString("productNumber");
 
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         response = given().contentType("application/json")
                 .when().get("cars/" + carId);
@@ -288,7 +288,7 @@ public class ReviewTest {
         Collection<OrderItemDTO> orderItems = new ArrayList<>();
         orderItems.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", orderItems, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", orderItems, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -307,7 +307,7 @@ public class ReviewTest {
                 .body(orderId)
                 .when().post("orders/manage/deliver");
 
-        ReviewDTO reviewDTO = new ReviewDTO("", "johnsmith@gmail.com", carId, "This product is so good!");
+        ReviewDTO reviewDTO = new ReviewDTO("", "dnguyen@miu.edu", carId, "This product is so good!");
 
         given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -319,7 +319,7 @@ public class ReviewTest {
                 .then()
                 .statusCode(200)
                 .and()
-                .body("email",hasItem("johnsmith@gmail.com"))
+                .body("email",hasItem("dnguyen@miu.edu"))
                 .body("productNumber",hasItem(carId))
                 .body("comment", hasItem("This product is so good!"));
     }

@@ -38,13 +38,15 @@ public class SeedDataConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //Add account
         if (userRepository.count() == 0) {
-            User adminUser = new User("Thang", "Nguyen", "admin@gmail.com", passwordEncoder.encode("qwe123"), Role.ROLE_ADMIN);
+            User adminUser = new User("Thang", "Nguyen", "admin@gmail.com", passwordEncoder.encode("616940"), Role.ROLE_ADMIN);
             userService.add(adminUser);
 
-            User employeeUser = new User("Hieu", "Tran", "emp@gmail.com", passwordEncoder.encode("qwe234"), Role.ROLE_EMPLOYEE);
+            User employeeUser = new User("Hieu", "Tran", "emp@gmail.com", passwordEncoder.encode("616944"), Role.ROLE_EMPLOYEE);
             userService.add(employeeUser);
 
-            User user = new User("John", "Smith", "johnsmith@gmail.com", passwordEncoder.encode("qwe456"), Role.ROLE_USER);
+            User user = new User("Dinh Thang", "Nguyen", "dnguyen@miu.edu", passwordEncoder.encode("616940"), Role.ROLE_USER);
+            userService.add(user);
+            user = new User("Giao Hieu", "Tran", "gtran@miu.edu", passwordEncoder.encode("616944"), Role.ROLE_USER);
             userService.add(user);
         }
 

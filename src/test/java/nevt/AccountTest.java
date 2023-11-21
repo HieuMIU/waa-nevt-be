@@ -20,7 +20,7 @@ public class AccountTest {
     }
 
     @Test
-    public void SignUp_Success() {
+    public void testSignUp_Success() {
         String randomEmail = RandomStringGenerator.generateRandomString(7) + "@gmail.com";
         String randomPassword = RandomStringGenerator.generateRandomString(7);
         SignUpRequest signUpRequest = new SignUpRequest("John","Senior",randomEmail, randomPassword);
@@ -38,7 +38,7 @@ public class AccountTest {
     }
 
     @Test
-    public void Signup_Fail_TooShortPassword() {
+    public void testSignup_Fail_TooShortPassword() {
         String randomEmail = RandomStringGenerator.generateRandomString(7) + "@gmail.com";
         String randomPassword = RandomStringGenerator.generateRandomString(5);
         SignUpRequest signUpRequest = new SignUpRequest("John","Senior",randomEmail, randomPassword);
@@ -56,7 +56,7 @@ public class AccountTest {
     }
 
     @Test
-    public void Signup_Fail_NullEmail() {
+    public void testSignup_Fail_NullEmail() {
         String randomPassword = RandomStringGenerator.generateRandomString(5);
         SignUpRequest signUpRequest = new SignUpRequest("John","Senior",null, randomPassword);
 
@@ -73,7 +73,7 @@ public class AccountTest {
     }
 
     @Test
-    public void Login_Success() {
+    public void testLogin_Success() {
         String randomEmail = RandomStringGenerator.generateRandomString(7) + "@gmail.com";
         String randomPassword = RandomStringGenerator.generateRandomString(7);
         SignUpRequest signUpRequest = new SignUpRequest("John","Senior",randomEmail, randomPassword);
@@ -102,7 +102,7 @@ public class AccountTest {
     }
 
     @Test
-    public void Login_Fail_WrongPassword() {
+    public void testLogin_Fail_WrongPassword() {
         String randomEmail = RandomStringGenerator.generateRandomString(7) + "@gmail.com";
         String randomPassword = RandomStringGenerator.generateRandomString(7);
         String otherRandomPassword = RandomStringGenerator.generateRandomString(7);

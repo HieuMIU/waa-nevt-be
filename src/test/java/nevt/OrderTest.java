@@ -35,7 +35,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateUserToken();
 
         CardDTO cardDTO = new CardDTO("VISA","0123456789", "08/29","345");
-        AddressDTO addressDTO = new AddressDTO("John Smith","johnsmith@gmail.com","641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen","dnguyen@miu.edu","641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -44,7 +44,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtToken)
@@ -53,12 +53,12 @@ public class OrderTest {
                 .then()
                 .statusCode(200)
                 .and()
-                .body("email", equalTo("johnsmith@gmail.com"))
+                .body("email", equalTo("dnguyen@miu.edu"))
                 .body("orderStatus", equalTo("PLACED"))
                 .body("total", equalTo(99990F))
                 .body("card.type", equalTo("VISA"))
                 .body("card.number", equalTo("0123456789"))
-                .body("address.name", equalTo("John Smith"))
+                .body("address.name", equalTo("Dinh Thang Nguyen"))
                 .body("address.phone", equalTo("641233112"));
     }
 
@@ -66,7 +66,7 @@ public class OrderTest {
     public void CreateOrder_Fail_NullCard() {
         String jwtToken = JwtUtils.generateUserToken();
 
-        AddressDTO addressDTO = new AddressDTO("John Smith","johnsmith@gmail.com","641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen","dnguyen@miu.edu","641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -75,7 +75,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, null, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, null, addressDTO);
 
         given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtToken)
@@ -94,7 +94,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -103,7 +103,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -126,7 +126,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -135,7 +135,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -163,7 +163,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -172,7 +172,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -201,7 +201,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -210,7 +210,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -243,7 +243,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -252,7 +252,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)
@@ -282,7 +282,7 @@ public class OrderTest {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
         CardDTO cardDTO = new CardDTO("VISA", "0123456789", "08/29", "345");
-        AddressDTO addressDTO = new AddressDTO("John Smith", "johnsmith@gmail.com", "641233112", "103 Main St", "FairField", 52556);
+        AddressDTO addressDTO = new AddressDTO("Dinh Thang Nguyen", "dnguyen@miu.edu", "641233112", "103 Main St", "FairField", 52556);
 
         Response response = given().contentType("application/json")
                 .when().get("cars/b8f29c31-6f79-4cc4-b939-f5048d4a4f3c");
@@ -291,7 +291,7 @@ public class OrderTest {
         Collection<OrderItemDTO> items = new ArrayList<>();
         items.add(new OrderItemDTO(carDTO, 1, 99990));
 
-        OrderDTO orderDTO = new OrderDTO("", items, "johnsmith@gmail.com", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
+        OrderDTO orderDTO = new OrderDTO("", items, "dnguyen@miu.edu", OrderStatus.PLACED, LocalDate.now(), 99990, cardDTO, addressDTO);
 
         response = given().contentType("application/json")
                 .header("Authorization", "Bearer " + jwtUserToken)

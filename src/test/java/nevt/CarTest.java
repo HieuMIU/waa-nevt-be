@@ -28,7 +28,7 @@ public class CarTest {
     }
 
     @Test
-    public void CreateCar_Success() {
+    public void testCreateCar_Success() {
         String jwtToken = JwtUtils.generateEmployeeToken();
         Collection<AttributeTypeDTO> types = new ArrayList<>();
         List<AttributeItemDTO> items = new ArrayList<>();
@@ -71,7 +71,7 @@ public class CarTest {
     }
 
     @Test
-    public void CreateCar_Fail_NonePermissionAccount() {
+    public void testCreateCar_Fail_NonePermissionAccount() {
         String jwtToken = JwtUtils.generateUserToken();
         Collection<AttributeTypeDTO> types = new ArrayList<>();
         List<AttributeItemDTO> items = new ArrayList<>();
@@ -103,7 +103,7 @@ public class CarTest {
     }
 
     @Test
-    public void CreateCar_Fail_InvalidInput() {
+    public void testCreateCar_Fail_InvalidInput() {
         String jwtToken = JwtUtils.generateUserToken();
 
         Collection<String> images = new ArrayList<>();
@@ -130,7 +130,7 @@ public class CarTest {
     }
 
     @Test
-    public void GetCar_Success() {
+    public void testGetCar_Success() {
         String jwtToken = JwtUtils.generateEmployeeToken();
         Collection<AttributeTypeDTO> types = new ArrayList<>();
         List<AttributeItemDTO> items = new ArrayList<>();
@@ -178,7 +178,7 @@ public class CarTest {
     }
 
     @Test
-    public void GetCar_Fail_NotExistedProductNumber() {
+    public void testGetCar_Fail_NotExistedProductNumber() {
         String randomProductNumber = GuidGenerator.generateGuid();
 
         Response response = given().contentType("application/json")
@@ -193,7 +193,7 @@ public class CarTest {
     }
 
     @Test
-    public void UpdateCar_Success() {
+    public void testUpdateCar_Success() {
         String jwtToken = JwtUtils.generateEmployeeToken();
         String jwtUserToken = JwtUtils.generateUserToken();
 
@@ -251,7 +251,7 @@ public class CarTest {
     }
 
     @Test
-    public void DeleteCar_Success() {
+    public void testDeleteCar_Success() {
         String jwtToken = JwtUtils.generateEmployeeToken();
 
         Collection<AttributeTypeDTO> types = new ArrayList<>();

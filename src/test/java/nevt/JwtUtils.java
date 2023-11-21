@@ -30,7 +30,7 @@ public class JwtUtils {
     }
 
     protected static String generateUserToken(){
-        User user = new User("John","Smith","johnsmith@gmail.com", "$2a$10$ISskiCsYdW5x.eBEjMElheudC6MQ/MB7QQ0jZz3No1wQNTPBSWYti", Role.ROLE_USER);
+        User user = new User("Dinh Thang","Nguyen","dnguyen@miu.edu", "$2a$10$mGdxU.osneoLi23d6XLGquZTfhiUJrcem7Vmu5lNDmF18BX3sXfwG", Role.ROLE_USER);
         return generateToken(new HashMap<>(), user);
     }
 

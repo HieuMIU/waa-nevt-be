@@ -21,7 +21,7 @@ public class CarController {
   private CarService carService;
 
   @GetMapping("")
-  public ResponseEntity<?> getTodayPickCars(@RequestParam(required = false) String searchKey) {
+  public ResponseEntity<?> filterCars(@RequestParam(required = false) String searchKey) {
     List<CarDTO> carDTOs = carService.filterCarByName(searchKey);
     return new ResponseEntity<List<CarDTO>> (carDTOs, HttpStatus.OK);
   }

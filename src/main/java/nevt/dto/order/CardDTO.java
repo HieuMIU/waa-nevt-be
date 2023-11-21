@@ -1,9 +1,22 @@
 package nevt.dto.order;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class CardDTO {
+
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String type;
+
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String number;
+
+    @NotEmpty
     private String validDate;
+
+    @NotEmpty
     private String validCode;
 
     public CardDTO(String type, String number, String validDate, String validCode) {

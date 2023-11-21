@@ -1,12 +1,11 @@
 package nevt.controllers;
 
-import nevt.common.CustomErrorType;
+import nevt.common.exceptionhandler.CustomErrorType;
 import nevt.common.constants.OrderStatus;
 import nevt.dto.car.CarDTO;
 import nevt.dto.order.OrderDTO;
 import nevt.dto.order.OrderItemDTO;
 import nevt.models.account.User;
-import nevt.models.order.Order;
 import nevt.services.CarService;
 import nevt.services.OrderService;
 import nevt.services.UserService;
@@ -15,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +39,7 @@ public class OrderController {
 
     @PostMapping("")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> createOrder(@RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<?> createOrder(@RequestBody @Validated OrderDTO orderDTO) {
         User user = userService.getCurrentUser();
         if (!user.getEmail().equals(orderDTO.getEmail())) {
             return new ResponseEntity<>(new CustomErrorType("Suspicious activity"), HttpStatus.FORBIDDEN );

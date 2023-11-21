@@ -1,4 +1,4 @@
-package nevt.common;
+package nevt.common.exceptionhandler;
 
 public class CustomErrorType {
     private String errorMessage;

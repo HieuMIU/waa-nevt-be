@@ -1,9 +1,17 @@
 package nevt.dto.order;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import nevt.dto.car.CarDTO;
 
 public class OrderItemDTO {
+
+    @NotNull
     private CarDTO car;
+
+    @NotNull
+    @Min(value = 1)
     private int number;
     private double totalPrice;
 

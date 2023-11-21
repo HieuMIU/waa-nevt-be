@@ -1,12 +1,30 @@
 package nevt.dto.order;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class AddressDTO {
 
+    @NotEmpty
+    @Size(min = 2, max = 50)
     private String name;
+
+    @NotEmpty
+    @Size(min = 2, max = 50)
     private String email;
+
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String phone;
+
+    @NotEmpty
     private String street;
+
+    @NotEmpty
     private String city;
+
+    @NotEmpty
+    @Size(min = 2, max = 10)
     private int zip;
 
     public AddressDTO(String name, String email, String phone, String street, String city, int zip) {

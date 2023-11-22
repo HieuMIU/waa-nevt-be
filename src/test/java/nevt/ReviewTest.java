@@ -167,7 +167,7 @@ public class ReviewTest {
                 .body(reviewDTO)
                 .when().post("reviews")
                 .then()
-                .statusCode(500)
+                .statusCode(400)
                 .and()
                 .body("errorMessage", equalTo("User have not ordered this car yet/ Your order does not delivery."));
     }

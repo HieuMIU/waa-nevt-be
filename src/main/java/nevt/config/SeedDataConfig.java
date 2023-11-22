@@ -106,7 +106,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2012,
                     "Model S",
                     "Tesla",
-                    5,
+                    20,
                     types,
                     images);
             carService.add(carDTO);
@@ -161,7 +161,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2018,
                     "Model 3",
                     "Tesla",
-                    7,
+                    20,
                     types,
                     images);
             carService.add(carDTO);
@@ -222,7 +222,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2015,
                     "Model X",
                     "Tesla",
-                    3,
+                    20,
                     types,
                     images);
             carService.add(carDTO);
@@ -283,7 +283,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2015,
                     "Model Y",
                     "Tesla",
-                    3,
+                    20,
                     types,
                     images);
             carService.add(carDTO);
@@ -332,7 +332,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2024,
                     "Crown",
                     "Toyota",
-                    7,
+                    20,
                     types,
                     images);
             carService.add(carDTO);
@@ -380,7 +380,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2024,
                     "Prius Prime",
                     "Toyota",
-                    2,
+                    20,
                     types,
                     images);
             carService.add(carDTO);
@@ -427,7 +427,7 @@ public class SeedDataConfig implements CommandLineRunner {
                     2024,
                     "GR Corolla",
                     "Toyota",
-                    5,
+                    20,
                     types,
                     images);
             carService.add(carDTO);

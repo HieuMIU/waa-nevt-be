@@ -43,9 +43,9 @@ public class ReviewController {
   @PreAuthorize("hasRole('USER')")
   @PostMapping("")
   public ResponseEntity<?> createReview(@RequestBody ReviewDTO reviewDTO) {
-
+    System.out.println(reviewDTO.toString());
     if(!orderService.hasOrderCar(reviewDTO.getEmail(), reviewDTO.getProductNumber())) {
-        return new ResponseEntity<CustomErrorType>(new CustomErrorType("User have not ordered this car yet/ Your order does not delivery."), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<CustomErrorType>(new CustomErrorType("User have not ordered this car yet/ Your order does not delivery."), HttpStatus.BAD_REQUEST);
     }
     ReviewDTO createdCarDTO = reviewService.add(reviewDTO);
     return new ResponseEntity<ReviewDTO> (createdCarDTO, HttpStatus.OK);

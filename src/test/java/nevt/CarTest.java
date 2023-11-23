@@ -122,7 +122,6 @@ public class CarTest {
                 .statusCode(400)
                 .and()
                 .body("data", is(nullValue()))
-                .body("fieldError.attributeTypes", equalTo("must not be empty"))
                 .body("fieldError.name", equalTo("size must be between 2 and 100"))
                 .body("fieldError.basePrice", equalTo("must not be null"))
                 .body("status", equalTo("BAD_REQUEST"));

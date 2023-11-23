@@ -41,7 +41,6 @@ public class CarDTO {
     private Integer stockQuantity;
 
 
-    @NotEmpty
     private Collection<AttributeTypeDTO> attributeTypes = new ArrayList<>();
 
     private Collection<String> images = new ArrayList<>();
